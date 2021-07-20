@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "GetCustomers";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.ContactName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View Orders", "GetOrderByCustomer", new { customerId = item.CustomerID })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td style="color:gray;">
+                    <h3>no records</h3>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

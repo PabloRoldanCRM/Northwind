@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "GetOrders";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.CustomerID)
+                    </td>
+                    <td>
+                        @item.OrderDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ShipCity)
+                    </td>
+                    <td>
+                        @item.Freight.ToString("c")
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td style="color:gray;">
+                    <h3>no records</h3>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
